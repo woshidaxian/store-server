@@ -36,5 +36,5 @@ app.use(router.routes())
 app.use(router.allowedMethods())
 
 app.listen(config.PORT, () => {
-  console.log('服务已启动：localhost:' + config.PORT)
+  console.success('服务已启动：localhost:' + config.PORT)
 })
