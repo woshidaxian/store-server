@@ -1,7 +1,7 @@
 class Ret {
   code = 1;data = null;message = null;
 
-  success(data){
+  success(data = null){
     this.code = 1
     this.data = data;
     this.message = 'success'
