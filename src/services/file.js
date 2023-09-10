@@ -19,7 +19,7 @@ async function loadByUrl(url, callback) {
         if(file.isDirectory()){
           f.push({ name: file.name, isFold: true })
         }else{
-          f.push({ name: file.name, isFold: true, size: fs.statSync(path.join(URL, file.name)).size })
+          f.push({ name: file.name, isFold: false, size: fs.statSync(path.join(URL, file.name)).size })
         }
       }
       return f
@@ -29,6 +29,26 @@ async function loadByUrl(url, callback) {
   }
 }
 
+function getFolderSize(folderPath) {
+  let totalSize = 0;
+
+  // 使用fs.readdirSync同步读取文件夹中的所有文件和子文件夹
+  const files = fs.readdirSync(folderPath, { withFileTypes: true });
+  for (const file of files) {
+    const filePath = path.join(folderPath, file.name);
+    // 如果是文件夹，递归计算文件夹大小
+    if (file.isDirectory()) {
+      totalSize += Number(getFolderSize(filePath));
+    }
+    // 如果是文件，获取文件大小并累加到总大小中
+    else if (file.isFile()) {
+      totalSize += Number(fs.statSync(filePath).size);
+    }
+  }
+
+  return totalSize
+}
+
 module.exports = {
-  loadByUrl
+  loadByUrl, getFolderSize
 }
