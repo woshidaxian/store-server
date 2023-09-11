@@ -5,6 +5,7 @@ const Ret = require('./../../common/ret')
 const fs = require('fs')
 const config = require('./../../config/config')
 const path = require('path')
+const uploadFile = require('../../common/upload');
 const ret = new Ret();
 
 /**
