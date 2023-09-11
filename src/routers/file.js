@@ -4,7 +4,8 @@ const router = new Router()
 const Ret = require('./../../common/ret')
 const fs = require('fs')
 const config = require('./../../config/config')
-const path = require('path')
+const path = require('path');
+const uploadFile = require('../../common/upload');
 const ret = new Ret();
 
 /**
@@ -25,8 +26,7 @@ router.post('/list', async ctx=>{
  * @api /api/file/upload
  * 上传文件
  */
-router.post('/upload', async ctx=>{
-  console.log(ctx.request.files)
+router.post('/upload', uploadFile.single('file'), async ctx=>{
   ctx.body = ret.success()
 })
 
