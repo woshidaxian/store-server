@@ -4,12 +4,7 @@ const router = new Router()
 const Ret = require('./../../common/ret')
 const fs = require('fs')
 const config = require('./../../config/config')
-<<<<<<< HEAD
-const path = require('path');
-const uploadFile = require('../../common/upload');
-=======
 const path = require('path')
->>>>>>> f4fcbe3a26a695cdf4e3848d30628211a27ad5c7
 const ret = new Ret();
 
 /**
