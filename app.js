@@ -3,6 +3,7 @@ const koa = require('koa');
 const Router = require('koa-router')
 const static = require('koa-static')
 const bodyParser = require('koa-bodyparser')
+const cors = require('koa2-cors')
 const fs = require('fs')
 const app = new koa()
 const router = new Router()
@@ -12,7 +13,7 @@ require('./common/pen')
 
 app.use(reqInfo)
 app.use(bodyParser())
-
+app.use(cors())
 fs.exists(config.FILE_ROOT, function (exists) {
   if(!exists) {
     console.info('云盘根路径不存在，已自动创建如下路径：')
